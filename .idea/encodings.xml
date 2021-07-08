@@ -8,8 +8,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/cn/edu/guet/mvc/ContextConfigListener.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/cn/edu/guet/mvc/ControllerMapping.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/cn/edu/guet/mvc/DispatcherServlet.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/cn/edu/guet/mvc/DispatcherServlet.java.bak" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/html/editor/writePost.html" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/js/editor/writePost.js" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
   </component>
 </project>

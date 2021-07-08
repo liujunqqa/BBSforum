@@ -110,11 +110,11 @@ public class DispatcherServlet extends HttpServlet {
                         List<FileItem> items = null;
                         try {
                             items = upload.parseRequest(request);
-                        } catch (FileUploadException e) {
-                            e.printStackTrace();
-                        }
-                        parameterValues[i] = items;
-                    }
+                } catch (FileUploadException e) {
+                    e.printStackTrace();
+                }
+                parameterValues[i] = items;
+            }
                 }
             }
             //这里就不能自己创建了，因为我们将类中的new都去除了，只有从工厂里面的实体才完整，所以要从工厂里面取

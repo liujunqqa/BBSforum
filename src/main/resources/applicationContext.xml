@@ -13,4 +13,16 @@
 		<property name="postBean" ref="Post"></property>
 	</bean>
 	<bean id="Post" class="cn.edu.guet.bean.editor.Post"></bean>
+
+	<bean id="collectpostController" class="cn.edu.guet.controller.collectpostController">
+		<!--		name必须跟类中对应的实体名一样否则无法映射，同样的ref也必须跟id一样-->
+		<property name="showSCTZseritf" ref="showSCTZserimpl"></property>
+	</bean>
+
+
+	<bean id="showSCTZserimpl" class="cn.edu.guet.bll.impl.showSCTZserimpl"></bean>
+	<bean id="collectpostController" class="cn.edu.guet.controller.collectpostController">
+		<property name="showSCTZseritf" ref="showSCTZserimpl"></property>
+	</bean>
+
 </beans>
