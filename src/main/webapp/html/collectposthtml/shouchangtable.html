@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/colleectpostcss/shouchangtable.css">
+        <script src="http://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
+        <script>
+            $(function(){
+                $.ajax({
+                    url:'sctz.do?userid=2',
+                    success:function(data){//data服务器返回的数据
+                        $.each(data,function(index,collectpost){
+                            //创建dom
+                            tizi=$("<tr><td><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</td>"
+                                +"<td><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</td>"
+                                +"<td><a href=\"javascript:void(0)\">"+collectpost.username+"</a>" + "</td>"
+                                +"<td><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</td></tr>")
+                            $("#showcollectpost").append(tizi);//渲染完毕
+                        })
+
+                    }
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <div class="zong">
+            <div class="main">
+                <div class="table">
+                    <table>
+                    <thead>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>标题</li>
+                                    <li><a href="#">主题</a></li>
+                                    <li><a href="#">回复</a></li>
+                                    <li><a href="#">点评</a></li>
+                                    <li><a href="#">筛选</a></li>
+                                </ul>
+                            </td>
+                            <td>版块/群组</td>
+                            <td>作者</td>
+                            <td>收藏时间</td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody id="showcollectpost">
+                    </tbody>
+                </table>
+            </div>
+            <div class="page">
+                <div class="g">
+                    <span><a href="#">首页</a></span>
+                    <span><a href="#">上一页</a></span>
+                    <ul>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                    </ul>
+                    <span><a href="#">下一页</a></span>
+                    <span><a href="#">尾页</a></span>
+                    <form action="">
+                        <input type="text" id="tiao">
+                        <input type="submit" value="跳转" id="tiaobutton">
+                    </form>
+                    <p>共2页 合计14条数据</p>
+                </div>               
+            </div>
+                
+            </div>
+        </div>
+        
+    </body>
+
+</html>

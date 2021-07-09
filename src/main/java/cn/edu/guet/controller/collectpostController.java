@@ -1,26 +1,28 @@
 package cn.edu.guet.controller;
 
-import cn.edu.guet.bean.collectpostbean.post1;
-import cn.edu.guet.bean.editor.Post;
-import cn.edu.guet.bll.impl.showSCTZserimpl;
-import cn.edu.guet.bll.showSCTZseritf;
+import cn.edu.guet.bean.collectpostbean.collectpost;
+import cn.edu.guet.bll.collectpostseritf;
 import cn.edu.guet.mvc.annotaion.Controller;
 import cn.edu.guet.mvc.annotaion.RequestMapping;
 
 import java.util.List;
 @Controller
 public class collectpostController {
-    private showSCTZseritf showSCTZseritf;
+    private collectpostseritf collectpostseritf;
 
-    public void setshowSCTZserimpl(showSCTZseritf showSCTZseritf) {
-        this.showSCTZseritf = showSCTZseritf;
+    public void setcollectpostserimpl(collectpostseritf collectpostseritf) {
+        this.collectpostseritf = collectpostseritf;
     }
 
-    @RequestMapping("sctz.do")
-    public void getSCTZ(){
-        System.out.println("mefj");
-        List<Post> list=showSCTZseritf.getSCTZ("1");
-        System.out.println(list.get(0).getPtitle());
-
+    @RequestMapping("html/collectposthtml/sctz.do")
+    public List<collectpost> getSCTZ(String userid){
+        System.out.println(userid);
+        List<collectpost> list=collectpostseritf.getSCTZ(userid);
+        return list;
+    }
+    @RequestMapping("html/collectposthtml/deletesctz.do")
+    public void  deleteAllSCTZ(){
+        collectpostseritf.deleteSCTZ("16");
+        System.out.println("eode");
     }
 }

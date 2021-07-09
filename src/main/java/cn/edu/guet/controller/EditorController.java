@@ -4,8 +4,6 @@ import cn.edu.guet.bean.editor.EditorUser;
 import cn.edu.guet.bean.editor.Post;
 import cn.edu.guet.bll.PostBll;
 import cn.edu.guet.bll.UploadImg;
-import cn.edu.guet.bll.impl.showSCTZserimpl;
-import cn.edu.guet.bll.showSCTZseritf;
 import cn.edu.guet.mvc.annotaion.Controller;
 import cn.edu.guet.mvc.annotaion.RequestMapping;
 import cn.edu.guet.util.EmojiChange;

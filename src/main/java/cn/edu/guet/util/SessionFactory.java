@@ -40,6 +40,7 @@ public class SessionFactory {
     public void close(SqlSession sqlSession){
         sqlSession.close();
     }
+
     public static SessionFactory getInstance(){
         return instance;
     }

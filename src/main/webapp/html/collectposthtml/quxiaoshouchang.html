@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/colleectpostcss/quxiaoshouchang.css">
+        <script type="text/javascript"  
+        src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $(function(){
+                $.ajax({
+                    url:'sctz.do?userid=2',
+                    success:function(data){//data服务器返回的数据
+                        $.each(data,function(index,collectpost){
+                            //创建dom
+                            tizi=$("<li id=\"checkbox\"><input type=\"checkbox\"  name=\"deletecollectpost\" value=\'"+collectpost.ptitle+"\'><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</input></li>")
+                            $("#showcollectpost").append(tizi);//渲染完毕
+                        })
+
+                    }
+                });
+            });
+            function f() {
+                var arry=new Array()
+                $('input[name="deletecollectpost"]:checked').each(function (index,element) {
+
+                    arry.push($(this).val());
+
+                });
+                var arrystr =arry.join(',');
+                console.log("选中值："+arrystr);
+                $("#checkbox").remove();
+                $.ajax({
+                    url:'sctz.do?userid=2',
+                    success:function(data){//data服务器返回的数据
+                        $.each(data,function(index,collectpost){
+                            //创建dom
+                            tizi=$("<li id=\"checkbox\"><input type=\"checkbox\"   name=\"deletecollectpost\" value=\'"+collectpost.ptitle+"\'><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</input></li>")
+                            $("#showcollectpost").append(tizi);//渲染完毕
+                        })
+
+                    }
+                });
+            }
+        </script>
+  
+    <script type="text/javascript">  
+        //checkbox 全选/取消全选  
+        var isCheckAll = false;  
+        function swapCheck() {  
+            if (isCheckAll) {  
+                $("input[type='checkbox']").each(function() {  
+                    this.checked = false;  
+                });  
+                isCheckAll = false;  
+            } else {  
+                $("input[type='checkbox']").each(function() {  
+                    this.checked = true;  
+                });  
+                isCheckAll = true;  
+            }  
+        }  
+    </script>  
+    </head>
+    <body>
+        <div class="zong">
+            <div class="main">
+                <form action="" method="" name="">
+                    
+                    <div class="all">
+                        <input type="checkbox" name="quanxuan" value="quanxuan" onclick="swapCheck()" id="all" >全选
+                        <input type="button" value="删除选中收藏" id="delete" onclick="f()">
+                    </div> 
+                    <ul id="showcollectpost">
+
+                    </ul>
+               </form>
+            </div>
+            <div class="page">
+                <div class="g">
+                    <span><a href="#">首页</a></span>
+                    <span><a href="#">上一页</a></span>
+                    <ul>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                    </ul>
+                    <span><a href="#">下一页</a></span>
+                    <span><a href="#">尾页</a></span>
+                    <form action="">
+                        <input type="text" id="tiao">
+                        <input type="submit" value="跳转" id="tiaobutton">
+                    </form>
+                    <p>共2页 合计14条数据</p>
+                </div>               
+            </div>
+        </div>
+    </body>
+</html>
