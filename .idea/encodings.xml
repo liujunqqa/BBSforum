@@ -11,10 +11,21 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/colleectpostcss/quxiaoshouchang.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/colleectpostcss/shouchang.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/colleectpostcss/shouchangtable.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/css/personimfcss/basicziliao.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/css/personimfcss/jiaoyuqingkuang.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/css/personimfcss/lianxifangshi.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/css/personimfcss/organizationpeople.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/css/personimfcss/organxingxi.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/html/collectposthtml/quxiaoshouchang.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/html/collectposthtml/shouchang.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/html/collectposthtml/shouchangtable.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/html/personimfhtml/basicziliao.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/html/personimfhtml/jiaoyuqingkuang.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/html/personimfhtml/lianxifangshi.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/html/personimfhtml/organizationpeople.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/html/personimfhtml/organxingxi.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/images/7.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/dan5.PNG" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

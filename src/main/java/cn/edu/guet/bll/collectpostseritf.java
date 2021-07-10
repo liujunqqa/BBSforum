@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface collectpostseritf {
     List<collectpost> getSCTZ(String userid);
-    void deleteSCTZ(String userid);
+    void deleteSCTZ(String userid,String pid);
 }

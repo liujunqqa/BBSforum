@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.zong{
+    width: 880px;
+    height: 700px;
+}
+
+table{
+    border-spacing: 60px 10px;
+    margin-top: 60px;
+    margin-left: 250px;
+}
+td{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}

@@ -6,12 +6,12 @@ import cn.edu.guet.mapper.collectpostmapper.showcollectpostMapper;
 import cn.edu.guet.util.SessionFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-
 import java.util.List;
-
+//收藏实现类
 public class collectpostserimpl implements collectpostseritf {
     private SqlSessionFactory sqlSessionFactory;
     private SqlSession sqlSession;
+    //显示收藏贴子
     @Override
     public List<collectpost> getSCTZ(String userid) {
         sqlSession= SessionFactory.getInstance().getSqlSession();
@@ -19,12 +19,12 @@ public class collectpostserimpl implements collectpostseritf {
         return showcollectpostMapper.getshowcollectpost(userid);
 
     }
-
+    //删除收藏贴子
     @Override
-    public void deleteSCTZ(String userid) {
+    public void deleteSCTZ(String userid,String pid) {
         sqlSession= SessionFactory.getInstance().getSqlSession();
         deletecollectpostMapper deletecollectpostMapper=sqlSession.getMapper(deletecollectpostMapper.class);
-        deletecollectpostMapper.deletecollectpost(userid);
+        deletecollectpostMapper.deletecollectpost(userid,pid);
         sqlSession.commit();
     }
 }

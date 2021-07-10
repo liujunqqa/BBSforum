@@ -14,15 +14,21 @@
 	</bean>
 	<bean id="Post" class="cn.edu.guet.bean.editor.Post"></bean>
 
-	<bean id="collectpostController" class="cn.edu.guet.controller.collectpostController">
-		<!--		name必须跟类中对应的实体名一样否则无法映射，同样的ref也必须跟id一样-->
-		<property name="collectpostseritf" ref="collectpostserimpl"></property>
-	</bean>
+<!--	<bean id="collectpostController" class="cn.edu.guet.controller.collectpostController">-->
+<!--		&lt;!&ndash;		name必须跟类中对应的实体名一样否则无法映射，同样的ref也必须跟id一样&ndash;&gt;-->
+<!--		<property name="collectpostseritf" ref="collectpostserimpl"></property>-->
+<!--	</bean>-->
 
 
 	<bean id="collectpostserimpl" class="cn.edu.guet.bll.impl.collectpostserimpl"></bean>
 	<bean id="collectpostController" class="cn.edu.guet.controller.collectpostController">
 		<property name="collectpostseritf" ref="collectpostserimpl"></property>
 	</bean>
+
+
+	<bean id="personimfController" class="cn.edu.guet.controller.personimfController">
+		<property name="personimfseritf" ref="personimfserimpl"></property>
+	</bean>
+	<bean id="personimfserimpl" class="cn.edu.guet.bll.impl.personimfserimpl"></bean>
 
 </beans>

@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: aliceblue ;
+}
+.zong{
+    position: relative;
+    width: 1100px;
+    height: 800px;
+    background-color: #DDDDDD;
+    left: 300px;
+    right: 300px;
+    background-color: #DDDDDD ;
+}
+.header{
+    width: 100%;
+    height: 5%;
+}
+.main{
+    width: 100%;
+    height: 95%;
+    background-color: antiquewhite;
+}
+.zuoce{
+    width: 20%;
+    height: 100%;
+    background-color:honeydew;
+    float: left;
+}
+.youce{
+    width: 80%;
+    height: 100%;
+    background-color: white;
+    float: left;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.zuoce li{
+    width: 100%;
+    height: 60px;
+    background-color:whitesmoke;
+    border-bottom:1px solid white;
+    text-align: center;
+    line-height: 60px;
+}
+.zuoce a{
+    display: block;
+    color: black;
+}
+.zuoce li:hover{
+    background-color: deepskyblue;
+}
