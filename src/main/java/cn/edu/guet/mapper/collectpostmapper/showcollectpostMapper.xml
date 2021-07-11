@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.guet.mapper.collectpostmapper.showcollectpostMapper">
-    <select id="getshowcollectpost" parameterType="String" resultType="collectpost">
-        select * from collect,post where collect.pid=post.pid and collect.userid=#{values}
+    <select id="getshowcollectpost" parameterType="collectpost" resultType="collectpost">
+        select * from collect,post  where collect.pid=post.pid and collect.userid=#{userid} LIMIT #{page},2;
     </select>
 </mapper>

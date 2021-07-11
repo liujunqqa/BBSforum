@@ -3,13 +3,38 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../../css/personimfcss/organxingxi.css">
+        <script src="http://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
+        <script>
+            $(function(){
+                $.ajax({
+                    url:'organxingxi.do?pid=2',
+                    success:function(data){//data服务器返回的数据
+                        console.log(data.length)
+                        if (data.length!=0) {
+                            $.each(data, function (index, groupxingxi) {
+                                console.log(groupxingxi)
+                                //创建dom
+                                group = $("<tr><td>组织号</td><td>" + groupxingxi.gid + "</td></tr>"
+                                    + "<tr><td>组织名称</td><td>" + groupxingxi.gname + "</td></tr>"
+                                    + "<tr><td>组织人数</td><td>" + groupxingxi.gcount + "</td></tr>"
+                                )
+                                $("#showgroupxingxi").append(group);//渲染完毕
+                            })
+                        }
+                        else {
+                            console.log(data);
+                            group=$("<p>你还没有加入组织，快去加入吧！</p>")
+                            $(".zong").append(group);//渲染完毕
+                        }
+
+                    }
+                });
+            });
+        </script>
     </head>
     <body>
         <div class="zong">
-            <table>
-                <tr><td>组织名称:</td><td>hfwehfu</td></tr>
-                <tr><td>组织创始人:</td><td>hfwehfu</td></tr>
-                <tr><td>组织人数:</td><td>hfwehfu</td></tr>
+            <table id="showgroupxingxi">
             </table>
         </div>
         

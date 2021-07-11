@@ -1,9 +1,12 @@
 package cn.edu.guet.bll.impl;
 
 import cn.edu.guet.bean.personimf.dgroup;
+import cn.edu.guet.bean.personimf.grouppeople;
 import cn.edu.guet.bll.personimfseritf;
 import cn.edu.guet.mapper.collectpostmapper.showcollectpostMapper;
 import cn.edu.guet.mapper.personimfmapper.showgroupMapper;
+import cn.edu.guet.mapper.personimfmapper.showgrouppeopleMapper;
+import cn.edu.guet.mapper.personimfmapper.showpeopleByIdMapper;
 import cn.edu.guet.util.SessionFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -19,5 +22,19 @@ public class personimfserimpl implements personimfseritf {
         showgroupMapper showgroupMapper=sqlSession.getMapper(showgroupMapper.class);
         return showgroupMapper.getgroup(gid);
 
+    }
+
+    @Override
+    public List<grouppeople> getgrouppeople(String userid) {
+        sqlSession= SessionFactory.getInstance().getSqlSession();
+        showgrouppeopleMapper showgrouppeopleMapper=sqlSession.getMapper(showgrouppeopleMapper.class);
+        return showgrouppeopleMapper.getgrouppeople(userid);
+    }
+
+    @Override
+    public List<grouppeople> getpeopleById(String userid,String username) {
+        sqlSession= SessionFactory.getInstance().getSqlSession();
+        showpeopleByIdMapper showpeopleByIdMapper=sqlSession.getMapper(showpeopleByIdMapper.class);
+        return showpeopleByIdMapper.getpeopleById(userid,username);
     }
 }

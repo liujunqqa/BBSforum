@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.collectpostmapper.collectcountMapper">
+    <select id="getCollectcount" parameterType="String" resultType="int">
+        select count(*) from collect,post  where collect.pid=post.pid and collect.userid=#{userid}
+    </select>
+</mapper>

@@ -16,9 +16,10 @@
                             tizi=$("<li id=\"checkbox\"><input type=\"checkbox\"  name=\"deletecollectpost\" value=\'"+collectpost.pid+"\'><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</input></li>")
                             $("#showcollectpost").append(tizi);//渲染完毕
                         })
-
                     }
                 });
+                $("#page1").css("background-color","yellow")
+
             });
             <!--        删除选择中收藏列表数据，并重新显示-->
             function f() {
@@ -80,7 +81,7 @@
                     <span><a href="#">首页</a></span>
                     <span><a href="#">上一页</a></span>
                     <ul>
-                        <li><a href="">1</a></li>
+                        <li id="page1"><a href="">1</a></li>
                         <li><a href="">2</a></li>
                         <li><a href="">3</a></li>
                     </ul>

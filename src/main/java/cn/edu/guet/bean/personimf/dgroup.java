@@ -3,15 +3,15 @@ package cn.edu.guet.bean.personimf;
 public class dgroup {
     private String gid;
     private String gname;
-    private String dgroup;
+    private String gcount;
 
     public dgroup() {
     }
 
-    public dgroup(String gid, String gname, String dgroup) {
+    public dgroup(String gid, String gname, String gcount) {
         this.gid = gid;
         this.gname = gname;
-        this.dgroup = dgroup;
+        this.gcount = gcount;
     }
 
     public String getGid() {
@@ -30,11 +30,11 @@ public class dgroup {
         this.gname = gname;
     }
 
-    public String getDgroup() {
-        return dgroup;
+    public String getGcount() {
+        return gcount;
     }
 
-    public void setDgroup(String dgroup) {
-        this.dgroup = dgroup;
+    public void setDcount(String Gcount) {
+        this.gcount = gcount;
     }
 }

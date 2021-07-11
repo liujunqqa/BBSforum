@@ -5,9 +5,66 @@
         <link rel="stylesheet" href="../../css/colleectpostcss/shouchangtable.css">
         <script src="http://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
         <script>
+            var page=1;
+            var page1=(page-1)*2
+            var count;
             $(function(){
                 $.ajax({
-                    url:'sctz.do?userid=2',
+                    url:'sctz.do?userid=2&page='+page1,
+                    success:function(data){//data服务器返回的数据
+                        console.log(data[0].count)
+                        var shuju=data[0].count
+                        count=(shuju+2-1)/2
+                        zong=$("<p>共"+count+"页 合计"+shuju+"条数据</p>")
+                        $("#shu").append(zong)
+                        $.each(data,function(index,collectpost){
+                            //创建dom
+                            tizi=$("<tr><td><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</td>"
+                                +"<td><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</td>"
+                                +"<td><a href=\"javascript:void(0)\">"+collectpost.username+"</a>" + "</td>"
+                                +"<td><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</td></tr>")
+                            $("#showcollectpost").append(tizi);//渲染完毕
+                        })
+                    }
+                });
+                $("#page1").css("background-color","yellow")
+
+            });
+            function f() {
+                page=1;
+                page1=(page-1)*2
+                $("#showcollectpost").empty();
+                lianjie(page1)
+                $("#page1").css("background-color","yellow")
+                $("#page2").css("background-color","white")
+                $("#page3").css("background-color","white")
+
+            }
+            function f1() {
+                page=2;
+                page1=(page-1)*2
+                $("#showcollectpost").empty();
+                lianjie(page1)
+                $("#page2").css("background-color","yellow")
+                $("#page1").css("background-color","white")
+                $("#page3").css("background-color","white")
+            }
+            function f2() {
+                page=3;
+                page1=(page-1)*2
+                $("#showcollectpost").empty();
+                lianjie(page1)
+                $("#page3").css("background-color","yellow")
+                $("#page1").css("background-color","white")
+                $("#page2").css("background-color","white")
+            }
+            function shouye() {
+                f()
+
+            }
+            function lianjie(page1) {
+                $.ajax({
+                    url:'sctz.do?userid=2&page='+page1,
                     success:function(data){//data服务器返回的数据
                         $.each(data,function(index,collectpost){
                             //创建dom
@@ -17,10 +74,84 @@
                                 +"<td><a href=\"javascript:void(0)\">"+collectpost.ptitle+"</a>" + "</td></tr>")
                             $("#showcollectpost").append(tizi);//渲染完毕
                         })
-
                     }
                 });
-            });
+
+            }
+            function lastpage() {
+                page = page - 1
+                if (page==1){
+                    f()
+                }
+                else if (page==2){
+                    f1()
+                }
+                else if (page==3){
+                    f2()
+                }
+                else if (page>0){
+                    page1 = (page - 1) * 2
+                    $("#page2").css("background-color","white")
+                    $("#page1").css("background-color","white")
+                    $("#page3").css("background-color","white")
+                    if (page > 0) {
+                        $("#showcollectpost").empty();
+                        lianjie(page1)
+                    }
+                }
+            }
+            function nextpage() {
+                page = page + 1
+                if (page==1){
+                    f()
+                }
+                else if (page==2){
+                    f1()
+                }
+                else if (page==3){
+                    f2()
+                }
+                else if (page<=count){
+                    $("#page2").css("background-color","white")
+                    $("#page1").css("background-color","white")
+                    $("#page3").css("background-color","white")
+                    page1 = (page - 1) * 2
+                    $("#showcollectpost").empty();
+                    lianjie(page1)
+                }
+
+            }
+            function tiaozhuang() {
+                var p=$("#tiao").val()
+                console.log(p)
+                if(p==1){
+                    f()
+                }else if (p==2){
+                    f1()
+                }else if (p==3){
+                    f2()
+                }else if (p<=count){
+                    $("#page2").css("background-color","white")
+                    $("#page1").css("background-color","white")
+                    $("#page3").css("background-color","white")
+                    $("#tiao").val("")
+                    page1 = (page - 1) * 2
+                    $("#showcollectpost").empty();
+                    lianjie(page1)
+                }
+
+            }
+            function weiye() {
+                page=count;
+                if (page>3){
+                    $("#page2").css("background-color","white")
+                    $("#page1").css("background-color","white")
+                    $("#page3").css("background-color","white")
+                }
+                page1=(page-1)*2
+                $("#showcollectpost").empty();
+                lianjie(page1)
+            }
         </script>
 
     </head>
@@ -52,20 +183,20 @@
             </div>
             <div class="page">
                 <div class="g">
-                    <span><a href="#">首页</a></span>
-                    <span><a href="#">上一页</a></span>
+                    <span><a href="javascript:void(0)" onclick="shouye()">首页</a></span>
+                    <span><a href="javascript:void(0)" onclick="lastpage()">上一页</a></span>
                     <ul>
-                        <li><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
+                        <li id="page1" onclick="f()"><a href="javascript:void(0)">1</a></li>
+                        <li id="page2" onclick="f1()"><a href="javascript:void(0)">2</a></li>
+                        <li id="page3" onclick="f2()"><a href="javascript:void(0)">3</a></li>
                     </ul>
-                    <span><a href="#">下一页</a></span>
-                    <span><a href="#">尾页</a></span>
-                    <form action="">
+                    <span><a href="#" onclick="nextpage()">下一页</a></span>
+                    <span><a href="#" onclick="weiye()">尾页</a></span>
+                    <form >
                         <input type="text" id="tiao">
-                        <input type="submit" value="跳转" id="tiaobutton">
+                        <input type="button" value="跳转" id="tiaobutton" onclick="tiaozhuang()">
                     </form>
-                    <p>共2页 合计14条数据</p>
+                    <p id="shu"></p>
                 </div>               
             </div>
                 

@@ -9,12 +9,14 @@ public class collectpost {
     private String ptype;
     private String pcontent;
     private String pstatus;
+    private int page;
+    private int count;
 
     public collectpost() {
     }
 
 
-    public collectpost(String userid, String username, String pid, String ptitle, String ptime, String ptype, String pcontent, String pstatus) {
+    public collectpost(String userid, String username, String pid, String ptitle, String ptime, String ptype, String pcontent, String pstatus, int page, int count) {
         this.userid = userid;
         this.username = username;
         this.pid = pid;
@@ -23,6 +25,24 @@ public class collectpost {
         this.ptype = ptype;
         this.pcontent = pcontent;
         this.pstatus = pstatus;
+        this.page = page;
+        this.count = count;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 
     public String getPtitle() {

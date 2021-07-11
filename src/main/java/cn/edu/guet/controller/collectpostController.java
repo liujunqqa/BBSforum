@@ -15,9 +15,15 @@ public class collectpostController {
     }
 //显示收藏贴子
     @RequestMapping("html/collectposthtml/sctz.do")
-    public List<collectpost> getSCTZ(String userid){
-        System.out.println(userid);
-        List<collectpost> list=collectpostseritf.getSCTZ(userid);
+    public List<collectpost> getSCTZ(String userid, int page){
+        int count=collectpostseritf.getSCTZCount(userid);
+        collectpost collectpost=new collectpost();
+        collectpost.setUserid(userid);
+        collectpost.setPage(page);
+        List<collectpost> list=collectpostseritf.getSCTZ(collectpost);
+        for (int i=0;i<list.size();i++){
+            list.get(i).setCount(count);
+        }
         return list;
     }
     //删除收藏贴子

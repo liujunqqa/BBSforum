@@ -3,28 +3,74 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../../css/personimfcss/organizationpeople.css">
+        <script type="text/javascript"
+                src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $(function(){
+                $.ajax({
+                    url:'grouppeople.do?userid=1',
+                    success:function(data){//data服务器返回的数据
+                        p=$("<b>当前共有"+data[0].gcount+"个成员"+"</b>")
+                        $("#count").append(p)
+                            $.each(data, function (index, grouppeople) {
+                                console.log(grouppeople)
+                                //创建dom
+                                if (index%3==0){
+                                    h=$("<tr></tr>")
+                                }
+                                g=$("<td><img src=\"../../images/dan5.PNG\" alt=\"\"><a href=\"#\">"+grouppeople.username+"</a></td>")
+                                h.append(g)
+                            })
+                        $("#group").append(h);
+
+                    }
+                });
+            });
+            function f() {
+                var username=$("#shousuo").val()
+                console.log(username)
+                $("#shousuo").val("");
+                $("#group").empty();
+                $("#count").empty();
+                $.ajax({
+                    url:'getpeopleById.do?userid=1&username='+username,
+                    success:function(data){//data服务器返回的数据
+                        console.log(data)
+                        p=$("<b>当前共有"+data[0].gcount+"个成员"+"</b>")
+                        $("#count").append(p)
+                        $.each(data, function (index, grouppeople) {
+                            console.log(grouppeople)
+                            //创建dom
+                            if (index%3==0){
+                                h=$("<tr></tr>")
+                            }
+                            g=$("<td><img src=\"../../images/dan5.PNG\" alt=\"\"><a href=\"#\">"+grouppeople.username+"</a></td>")
+                            h.append(g)
+                        })
+                        $("#group").append(h);
+
+                    }
+                });
+
+
+            }
+        </script>
     </head>
     <body>
         <div class="zong">
             <div class="main">
                 <div class="header">
-                    <p>当前共有30个组员</p>
-                    <div class="chazao">
-                        查找组员：<input type="text">
-                        <input type="submit" value="搜索">
+                    <p id="count"></p>
 
+                    <div class="chazao">
+                        查找组员：<input type="text" id="shousuo">
+                        <input type="button" value="搜索" onclick="f()">
                     </div>
                     
                 </div>
                 <div class="zuoce">
-                    <table>
-                        <tr><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td></tr>
-                        <tr><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td></tr>
-                        <tr><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td></tr>
-                        <tr><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td></tr>
-                        <tr><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td></tr>
-                        <tr><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td><td><img src="../../images/dan5.PNG" alt=""><a href="ddd">liujun</a></td></tr>
-                        
+                    <table id="group">
+
                     </table>
                 </div>
                 <div class="page" >
