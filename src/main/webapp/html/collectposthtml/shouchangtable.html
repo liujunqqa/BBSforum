@@ -14,7 +14,7 @@
                     success:function(data){//data服务器返回的数据
                         console.log(data[0].count)
                         var shuju=data[0].count
-                        count=(shuju+2-1)/2
+                        count=parseInt((shuju+2-1)/2)
                         zong=$("<p>共"+count+"页 合计"+shuju+"条数据</p>")
                         $("#shu").append(zong)
                         $.each(data,function(index,collectpost){
@@ -41,22 +41,26 @@
 
             }
             function f1() {
-                page=2;
-                page1=(page-1)*2
-                $("#showcollectpost").empty();
-                lianjie(page1)
-                $("#page2").css("background-color","yellow")
-                $("#page1").css("background-color","white")
-                $("#page3").css("background-color","white")
+                if (count>=2) {
+                    page = 2;
+                    page1 = (page - 1) * 2
+                    $("#showcollectpost").empty();
+                    lianjie(page1)
+                    $("#page2").css("background-color", "yellow")
+                    $("#page1").css("background-color", "white")
+                    $("#page3").css("background-color", "white")
+                }
             }
             function f2() {
-                page=3;
-                page1=(page-1)*2
-                $("#showcollectpost").empty();
-                lianjie(page1)
-                $("#page3").css("background-color","yellow")
-                $("#page1").css("background-color","white")
-                $("#page2").css("background-color","white")
+                if (count>=3) {
+                    page = 3;
+                    page1 = (page - 1) * 2
+                    $("#showcollectpost").empty();
+                    lianjie(page1)
+                    $("#page3").css("background-color", "yellow")
+                    $("#page1").css("background-color", "white")
+                    $("#page2").css("background-color", "white")
+                }
             }
             function shouye() {
                 f()
@@ -112,6 +116,7 @@
                     f2()
                 }
                 else if (page<=count){
+                    page=4;
                     $("#page2").css("background-color","white")
                     $("#page1").css("background-color","white")
                     $("#page3").css("background-color","white")
@@ -190,8 +195,8 @@
                         <li id="page2" onclick="f1()"><a href="javascript:void(0)">2</a></li>
                         <li id="page3" onclick="f2()"><a href="javascript:void(0)">3</a></li>
                     </ul>
-                    <span><a href="#" onclick="nextpage()">下一页</a></span>
-                    <span><a href="#" onclick="weiye()">尾页</a></span>
+                    <span><a href="javascript:void(0)" onclick="nextpage()">下一页</a></span>
+                    <span><a href="javascript:void(0)" onclick="weiye()">尾页</a></span>
                     <form >
                         <input type="text" id="tiao">
                         <input type="button" value="跳转" id="tiaobutton" onclick="tiaozhuang()">

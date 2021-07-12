@@ -1,5 +1,6 @@
 package cn.edu.guet.controller;
 
+import cn.edu.guet.bean.personimf.Users;
 import cn.edu.guet.bean.personimf.dgroup;
 import cn.edu.guet.bean.personimf.grouppeople;
 import cn.edu.guet.bll.impl.personimfserimpl;
@@ -23,8 +24,13 @@ public class personimfController {
         return list;
     }
     @RequestMapping("html/personimfhtml/grouppeople.do")
-    public List<grouppeople>getgrouppeople(String userid){
-        List<grouppeople>list=personimfseritf.getgrouppeople(userid);
+    public List<grouppeople>getgrouppeople(String userid,int page){
+        System.out.println(userid);
+        System.out.println(page);
+        grouppeople grouppeople=new grouppeople();
+        grouppeople.setUserid(userid);
+        grouppeople.setPage(page);
+        List<grouppeople>list=personimfseritf.getgrouppeople(grouppeople);
         return list;
     }
     @RequestMapping("html/personimfhtml/getpeopleById.do")
@@ -33,6 +39,10 @@ public class personimfController {
         System.out.println(username);
         List<grouppeople>list=personimfseritf.getpeopleById(userid,username);
         return list;
+    }
+    public Users getUser(String userid){
+        Users users=personimfseritf.getUser(userid);
+        return users;
     }
 
 

@@ -28,12 +28,12 @@ public class collectpostController {
     }
     //删除收藏贴子
     @RequestMapping("html/collectposthtml/deletesctz.do")
-    public String  deleteAllSCTZ(String userid,String deleteArry){
+    public String  deleteAllSCTZ(String userid,String deleteArry,int page){
         String index[]=deleteArry.split(",");
         for(int i=0;i<index.length;i++){
             collectpostseritf.deleteSCTZ(userid, index[i]);
         }
-        return "forward:sctz.do";
+        return "forward:sctz.do?userid="+userid+"&page="+page;
 
     }
 }

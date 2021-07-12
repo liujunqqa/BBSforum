@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.guet.mapper.collectpostmapper.showcollectpostMapper">
     <select id="getshowcollectpost" parameterType="collectpost" resultType="collectpost">
-        select * from collect,post  where collect.pid=post.pid and collect.userid=#{userid} LIMIT #{page},2;
+        select * from collect,post,users  where collect.pid=post.pid and collect.userid=#{userid} and post.userid=users.userid LIMIT #{page},2;
     </select>
 </mapper>

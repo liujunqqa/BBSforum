@@ -6,14 +6,23 @@
         <script type="text/javascript"
                 src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
+            var page=1;
+            var page1=(page-1)*2
+            var count;
             $(function(){
                 $.ajax({
-                    url:'grouppeople.do?userid=1',
+                    url:'grouppeople.do?userid=1&page='+page1,
                     success:function(data){//data服务器返回的数据
+                        console.log(data[0].gcount)
                         p=$("<b>当前共有"+data[0].gcount+"个成员"+"</b>")
                         $("#count").append(p)
+                        var n=data[0].gcount
+                        console.log(n)
+                        count=parseInt((n+2-1)/2)
+                        console.log(count)
+                        zong=$("<p>共"+count+"页 合计"+n+"条数据</p>")
+                        $("#shu").append(zong)
                             $.each(data, function (index, grouppeople) {
-                                console.log(grouppeople)
                                 //创建dom
                                 if (index%3==0){
                                     h=$("<tr></tr>")
@@ -25,19 +34,18 @@
 
                     }
                 });
+                $("#page1").css("background-color","yellow")
             });
-            function f() {
+
+            function check() {
                 var username=$("#shousuo").val()
                 console.log(username)
                 $("#shousuo").val("");
                 $("#group").empty();
-                $("#count").empty();
                 $.ajax({
                     url:'getpeopleById.do?userid=1&username='+username,
                     success:function(data){//data服务器返回的数据
                         console.log(data)
-                        p=$("<b>当前共有"+data[0].gcount+"个成员"+"</b>")
-                        $("#count").append(p)
                         $.each(data, function (index, grouppeople) {
                             console.log(grouppeople)
                             //创建dom
@@ -51,8 +59,136 @@
 
                     }
                 });
+            }
+            function f() {
+                page=1;
+                page1=(page-1)*2
+                $("#group").empty();
+                lianjie(page1)
+                $("#page1").css("background-color","yellow")
+                $("#page2").css("background-color","white")
+                $("#page3").css("background-color","white")
 
+            }
+            function f1() {
+                if (count>=2) {
+                    page = 2;
+                    page1 = (page - 1) * 2
+                    $("#group").empty();
+                    lianjie(page1)
+                    $("#page2").css("background-color", "yellow")
+                    $("#page1").css("background-color", "white")
+                    $("#page3").css("background-color", "white")
+                }
+            }
+            function f2() {
+                if (count>=3) {
+                    page = 3;
+                    page1 = (page - 1) * 2
+                    $("#group").empty();
+                    lianjie(page1)
+                    $("#page3").css("background-color", "yellow")
+                    $("#page1").css("background-color", "white")
+                    $("#page2").css("background-color", "white")
+                }
+            }
+            function shouye() {
+                f()
 
+            }
+            function lianjie(page1) {
+                $.ajax({
+                    url:'grouppeople.do?userid=1&page='+page1,
+                    success:function(data){//data服务器返回的数据
+                        $.each(data,function(index,grouppeople){
+                            //创建dom
+                            console.log(grouppeople)
+                            //创建dom
+                            if (index%3==0){
+                                h=$("<tr></tr>")
+                            }
+                            g=$("<td><img src=\"../../images/dan5.PNG\" alt=\"\"><a href=\"#\">"+grouppeople.username+"</a></td>")
+                            h.append(g)
+                        })
+                        $("#group").append(h);
+                    }
+                });
+
+            }
+            function lastpage() {
+                page = page - 1
+                if (page==1){
+                    f()
+                }
+                else if (page==2){
+                    f1()
+                }
+                else if (page==3){
+                    f2()
+                }
+                else if (page>0){
+                    page1 = (page - 1) * 2
+                    $("#page2").css("background-color","white")
+                    $("#page1").css("background-color","white")
+                    $("#page3").css("background-color","white")
+                    if (page > 0) {
+                        $("#group").empty();
+                        lianjie(page1)
+                    }
+                }
+            }
+            function nextpage() {
+                page = page + 1
+                if (page==1){
+                    f()
+                }
+                else if (page==2){
+                    f1()
+                }
+                else if (page==3){
+                    f2()
+                }
+                else if (page<=count){
+                    page=4;
+                    $("#page2").css("background-color","white")
+                    $("#page1").css("background-color","white")
+                    $("#page3").css("background-color","white")
+                    page1 = (page - 1) * 2
+                    $("#group").empty();
+                    lianjie(page1)
+                }
+
+            }
+            function tiaozhuang() {
+                var p=$("#tiao").val()
+                console.log(p)
+                if(p==1){
+                    f()
+                }else if (p==2){
+                    f1()
+                }else if (p==3){
+                    f2()
+                }else if (p<=count){
+                    $("#page2").css("background-color","white")
+                    $("#page1").css("background-color","white")
+                    $("#page3").css("background-color","white")
+                    $("#tiao").val("")
+                    page1 = (page - 1) * 2
+                    $("#group").empty();
+                    lianjie(page1)
+                }
+
+            }
+            function weiye() {
+                page=count;
+                if (page>3){
+                    $("#page2").css("background-color","white")
+                    $("#page1").css("background-color","white")
+                    $("#page3").css("background-color","white")
+                }
+                page1=(page-1)*2
+                $("#group").empty();
+                lianjie(page1)
             }
         </script>
     </head>
@@ -64,7 +200,7 @@
 
                     <div class="chazao">
                         查找组员：<input type="text" id="shousuo">
-                        <input type="button" value="搜索" onclick="f()">
+                        <input type="button" value="搜索" onclick="check()">
                     </div>
                     
                 </div>
@@ -75,20 +211,20 @@
                 </div>
                 <div class="page" >
                     <div class="g">
-                        <span><a href="#">首页</a></span>
-                        <span><a href="#">上一页</a></span>
+                        <span><a href="javascript:void(0)" onclick="shouye()">首页</a></span>
+                        <span><a href="javascript:void(0)" onclick="nextpage()">上一页</a></span>
                         <ul>
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
+                            <li onclick="f()" id="page1"><a href="javascript:void(0)">1</a></li>
+                            <li onclick="f1()" id="page2"><a href="javascript:void(0)">2</a></li>
+                            <li onclick="f2()" id="page3"><a href="javascript:void(0)">3</a></li>
                         </ul>
-                        <span><a href="#">下一页</a></span>
-                        <span><a href="#">尾页</a></span>
+                        <span><a href="javascript:void(0)" onclick="nextpage()">下一页</a></span>
+                        <span><a href="javascript:void(0)" onclick="weiye()">尾页</a></span>
                         <form action="">
                             <input type="text" id="tiao">
-                            <input type="submit" value="跳转" id="tiaobutton">
+                            <input type="button" value="跳转" id="tiaobutton" onclick="tiaozhuang()">
                         </form>
-                        <p>共2页 合计14条数据</p>
+                        <p id="shu"></p>
                     </div>               
     
                 </div>

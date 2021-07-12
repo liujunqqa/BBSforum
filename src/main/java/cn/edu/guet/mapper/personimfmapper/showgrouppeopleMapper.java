@@ -5,5 +5,5 @@ import cn.edu.guet.bean.personimf.grouppeople;
 import java.util.List;
 
 public interface showgrouppeopleMapper {
-    List<grouppeople> getgrouppeople(String userid);
+    List<grouppeople> getgrouppeople(grouppeople grouppeople);
 }
