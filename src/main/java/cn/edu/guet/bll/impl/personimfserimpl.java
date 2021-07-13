@@ -1,14 +1,9 @@
 package cn.edu.guet.bll.impl;
 
-import cn.edu.guet.bean.personimf.Users;
-import cn.edu.guet.bean.personimf.dgroup;
-import cn.edu.guet.bean.personimf.grouppeople;
+import cn.edu.guet.bean.personimf.*;
 import cn.edu.guet.bll.personimfseritf;
 import cn.edu.guet.mapper.collectpostmapper.showcollectpostMapper;
-import cn.edu.guet.mapper.personimfmapper.getUserMapper;
-import cn.edu.guet.mapper.personimfmapper.showgroupMapper;
-import cn.edu.guet.mapper.personimfmapper.showgrouppeopleMapper;
-import cn.edu.guet.mapper.personimfmapper.showpeopleByIdMapper;
+import cn.edu.guet.mapper.personimfmapper.*;
 import cn.edu.guet.util.SessionFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -47,4 +42,36 @@ public class personimfserimpl implements personimfseritf {
         return getUserMapper.getUser(userid);
 
     }
+
+    @Override
+    public void changeUser(Users user) {
+        sqlSession= SessionFactory.getInstance().getSqlSession();
+        changeUserMapper changeUserMapper=sqlSession.getMapper(changeUserMapper.class);
+        changeUserMapper.changeUser(user);
+        sqlSession.commit();
+    }
+
+    @Override
+    public Macollege getMajor(String mname) {
+        sqlSession= SessionFactory.getInstance().getSqlSession();
+        getMajorMapper getMajorMapper=sqlSession.getMapper(getMajorMapper.class);
+        return  getMajorMapper.getMajor(mname);
+
+
+    }
+
+    @Override
+    public college getCollege(String cname) {
+        sqlSession= SessionFactory.getInstance().getSqlSession();
+        getCollegeMapper getCollegeMapper=sqlSession.getMapper(getCollegeMapper.class);
+        return getCollegeMapper.getCollege(cname);
+    }
+
+    @Override
+    public Macollege getMacollege(String mname, String cname) {
+        sqlSession= SessionFactory.getInstance().getSqlSession();
+        getMacollegeMapper getMacollegeMapper=sqlSession.getMapper(getMacollegeMapper.class);
+        return getMacollegeMapper.getMacollege(mname,cname);
+    }
+
 }

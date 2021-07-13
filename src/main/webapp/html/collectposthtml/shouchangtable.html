@@ -83,71 +83,80 @@
 
             }
             function lastpage() {
-                page = page - 1
-                if (page==1){
-                    f()
-                }
-                else if (page==2){
-                    f1()
-                }
-                else if (page==3){
-                    f2()
-                }
-                else if (page>0){
-                    page1 = (page - 1) * 2
-                    $("#page2").css("background-color","white")
-                    $("#page1").css("background-color","white")
-                    $("#page3").css("background-color","white")
-                    if (page > 0) {
-                        $("#showcollectpost").empty();
-                        lianjie(page1)
+                if (page > 1) {
+                    page = page - 1
+                    if (page == 1) {
+                        f()
+                    } else if (page == 2) {
+                        f1()
+                    } else if (page == 3) {
+                        f2()
+                    } else if (page > 0) {
+                        page1 = (page - 1) * 2
+                        $("#page2").css("background-color", "white")
+                        $("#page1").css("background-color", "white")
+                        $("#page3").css("background-color", "white")
+                        if (page > 0) {
+                            $("#showcollectpost").empty();
+                            lianjie(page1)
+                        }
                     }
                 }
             }
             function nextpage() {
-                page = page + 1
-                if (page==1){
-                    f()
-                }
-                else if (page==2){
-                    f1()
-                }
-                else if (page==3){
-                    f2()
-                }
-                else if (page<=count){
-                    page=4;
-                    $("#page2").css("background-color","white")
-                    $("#page1").css("background-color","white")
-                    $("#page3").css("background-color","white")
-                    page1 = (page - 1) * 2
-                    $("#showcollectpost").empty();
-                    lianjie(page1)
-                }
+                if (page < count) {
+                    page = page + 1
+                    if (page == 1) {
+                        f()
+                    } else if (page == 2) {
+                        f1()
+                    } else if (page == 3) {
+                        f2()
+                    } else if (page <= count) {
+                        page = 4;
+                        $("#page2").css("background-color", "white")
+                        $("#page1").css("background-color", "white")
+                        $("#page3").css("background-color", "white")
+                        page1 = (page - 1) * 2
+                        $("#showcollectpost").empty();
+                        lianjie(page1)
+                    }
 
+                }
             }
             function tiaozhuang() {
-                var p=$("#tiao").val()
-                console.log(p)
-                if(p==1){
-                    f()
-                }else if (p==2){
-                    f1()
-                }else if (p==3){
-                    f2()
-                }else if (p<=count){
-                    $("#page2").css("background-color","white")
-                    $("#page1").css("background-color","white")
-                    $("#page3").css("background-color","white")
-                    $("#tiao").val("")
-                    page1 = (page - 1) * 2
-                    $("#showcollectpost").empty();
-                    lianjie(page1)
-                }
+                var p = $("#tiao").val()
+                if (p <= count && p > 0) {
+                    console.log(p)
+                    if (p == 1) {
+                        f()
+                    } else if (p == 2) {
+                        f1()
+                    } else if (p == 3) {
+                        f2()
+                    } else if (p <= count) {
+                        $("#page2").css("background-color", "white")
+                        $("#page1").css("background-color", "white")
+                        $("#page3").css("background-color", "white")
+                        $("#tiao").val("")
+                        page1 = (page - 1) * 2
+                        $("#showcollectpost").empty();
+                        lianjie(page1)
+                    }
 
+                }
             }
             function weiye() {
                 page=count;
+                if (page==1){
+                    f()
+                }
+                if (page==2){
+                    f1()
+                }
+                if (page==3){
+                    f2()
+                }
                 if (page>3){
                     $("#page2").css("background-color","white")
                     $("#page1").css("background-color","white")

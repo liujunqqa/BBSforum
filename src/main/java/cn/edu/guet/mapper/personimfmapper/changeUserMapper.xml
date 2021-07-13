@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.personimfmapper.changeUserMapper">
+    <update id="changeUser" parameterType="Users" >
+        UPDATE users SET users.age=#{age},users.phone=#{phone},users.email=#{email},users.mid=(select mid from major where mname=#{mname}),users.cid=(select cid from major where mname=#{mname}) WHERE userid=#{userid}
+    </update>
+</mapper>

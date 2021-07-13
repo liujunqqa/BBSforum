@@ -10,14 +10,14 @@ public class Users {
     private String age;
     private String phone;
     private String email;
-    private String major;
+    private String mname;
     private String grade;
-    private String college;
+    private String cname;
 
     public Users() {
     }
 
-    public Users(String userid, String username, String password, String realname, String stunumber, String sex, String age, String phone, String email, String major, String grade, String college) {
+    public Users(String userid, String username, String password, String realname, String stunumber, String sex, String age, String phone, String email, String mname, String grade, String cname) {
         this.userid = userid;
         this.username = username;
         this.password = password;
@@ -27,9 +27,9 @@ public class Users {
         this.age = age;
         this.phone = phone;
         this.email = email;
-        this.major = major;
+        this.mname = mname;
         this.grade = grade;
-        this.college = college;
+        this.cname = cname;
     }
 
     public String getUserid() {
@@ -104,12 +104,12 @@ public class Users {
         this.email = email;
     }
 
-    public String getMajor() {
-        return major;
+    public String getMname() {
+        return mname;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    public void setMname(String mname) {
+        this.mname = mname;
     }
 
     public String getGrade() {
@@ -120,11 +120,11 @@ public class Users {
         this.grade = grade;
     }
 
-    public String getCollege() {
-        return college;
+    public String getCname() {
+        return cname;
     }
 
-    public void setCollege(String college) {
-        this.college = college;
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 }

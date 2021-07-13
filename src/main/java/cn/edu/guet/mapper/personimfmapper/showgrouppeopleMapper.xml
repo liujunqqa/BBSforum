@@ -3,6 +3,6 @@
 <mapper namespace="cn.edu.guet.mapper.personimfmapper.showgrouppeopleMapper">
     <select id="getgrouppeople" parameterType="grouppeople" resultType="grouppeople">
         SELECT users.username,dgroup.gcount from users,(select gid from users where userid=#{userid}) c,dgroup
-        WHERE users.gid=c.gid AND dgroup.gid=c.gid LIMIT #{page},2;
+        WHERE users.gid=c.gid AND dgroup.gid=c.gid LIMIT #{page},4;
     </select>
 </mapper>

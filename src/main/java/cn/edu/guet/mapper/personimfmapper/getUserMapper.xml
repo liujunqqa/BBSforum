@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.guet.mapper.personimfmapper.getUserMapper">
     <select id="getUser" parameterType="String" resultType="Users">
-        select * from users where userid=#{values}
+        select * from users,college,major where userid=#{values} and users.cid=college.cid and major.mid=users.mid
     </select>
 </mapper>

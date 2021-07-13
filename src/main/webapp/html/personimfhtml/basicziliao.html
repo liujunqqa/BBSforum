@@ -3,55 +3,170 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../../css/personimfcss/basicziliao.css">
+        <script src="http://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
+        <script>
+            var userid;
+            var a=1;
+            var b=1;
+            var c=1;
+            var d=1;
+            var e=1;
+            $(function(){
+                $.ajax({
+                    url:'getUser.do?userid=2',
+                    success:function(data){//data服务器返回的数据
+                        console.log(data)
+                        userid=data.userid;
+                        username=$("<p>"+data.username+"</p>")
+                        $("#username").append(username)
+
+                        stunumber=$("<p>"+data.stunumber+"</p>")
+                        $("#stunumber").append(stunumber)
+
+                        really=$("<p>"+data.realname+"</p>")
+                        $("#really").append(really)
+                        sex=$("<p>"+data.sex+"</p>")
+                        $("#sex").append(sex)
+                        age=$("<input id=\'age1\' onblur=\'showage()\' type=\'text\' value=\'"+data.age+"\'>"+
+                            "<p id=\'showage\' style=\'font-size: small;color: red;display: none\'>年龄不得大于100岁</p>")
+                        $("#age").append(age)
+
+                        phone=$("<input id=\'phone1\' onblur=\'showphone()\' type=\'text\' value=\'"+data.phone+"\'>"+
+                            "<p id=\'showphone\' style=\'font-size: small;color: red;display: none\'>请输入正确的手机号</p>")
+                        $("#phone").append(phone)
+
+                        email=$("<input id=\'email1\' onblur=\'shwoemail()\' type=\'email\' value=\'"+data.email+"\'>" +
+                            "<p id=\'showemail\' style=\'font-size: small;color: red;display: none\'>请输入正确的邮箱</p>")
+                        $("#email").append(email)
+
+                        major=$("<input id=\'major1\' onblur=\'showmajor()\' type=\'text\' value=\'"+data.mname+"\'>" +
+                            "<p id=\'showmajor\' style=\'font-size: small;color: red;display: none\'>请输入正确的专业</p>")
+                        $("#major").append(major)
+
+                        grade=$("<input id=\'grade1\' onblur=\'showage()\' type=\'text\' value=\'"+data.grade+"\'>" +
+                            "<p id=\'showgrade\' style=\'font-size: small;color: red;display: none\'>请输入正确的年级</p>")
+                        $("#grade").append(grade)
+
+                        collage=$("<input id=\'collage1\' onblur=\'showcollege()\' type=\'text\' value=\'"+data.cname+"\'>" +
+                            "<p id=\'showcollege\' style=\'font-size: small;color: red;display: none\'>请输入正确的学院</p>")
+                        $("#collage").append(collage)
+                    }
+                });
+
+            });
+            function f() {
+                if (a == 1 && b == 1 && c == 1 && d == 1 && e == 1) {
+                    var age = $("#age1").val();
+                    var phone = $("#phone1").val();
+                    var email = $("#email1").val();
+                    var major = $("#major1").val();
+                    var grade = $("#grade1").val();
+                    var collage = $("#collage1").val();
+                    console.log(userid)
+                    var arry = [age, phone, email, major, grade, collage, userid]
+                    var Users = arry.join(',');
+                    $.ajax({
+                        url: 'ChangeUser.do?user='+Users,
+                        success: function (data) {//data服务器返回的数据
+                        }
+                    })
+                }
+                else {
+
+                }
+            }
+            function showage() {
+                var age=$("#age1").val();
+                if (age>100||age<=0) {
+                    a=0;
+                    $('#showage').css('display', 'inline');
+                }
+                else {
+                    a=1;
+                    $('#showage').css('display', 'none');
+                }
+
+            }
+            function showphone() {
+                var myReg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$/;
+                var use5=$("#phone1").val();
+                if(use5!=""&&!myReg.test(use5))
+                {
+                    b==0;
+                    $('#showphone').css('display', 'inline');
+                }
+                else {
+                    b=1;
+                    $('#showphone').css('display', 'none');
+                }
+            }
+            function shwoemail() {
+                var reg =/^\w+@\w+\.\w+$/;
+                var email=$("#email1").val();
+                if (email!=""&&!reg.test(email)) {
+                    c==0;
+                    $('#showemail').css('display', 'inline');
+                }
+                else {
+                    c=1;
+                    $('#showemail').css('display', 'none');
+                }
+
+            }
+            function showmajor() {
+                var major=$("#major1").val();
+                $.ajax({
+                    url: 'getMajor.do?mname='+major,
+                    success: function (data) {
+                        if (data==0){
+                            d==0;
+                            $('#showmajor').css('display', 'inline');
+                        }
+                        else {
+                            d=1;
+                            $('#showmajor').css('display', 'none');
+                        }
+                    }
+                })
+
+            }
+            function showcollege() {
+                var collage=$("#collage1").val();
+                var major=$("#major1").val();
+                $.ajax({
+                    url: 'getMacollege.do?mname='+major+'&cname='+collage,
+                    success: function (data) {
+                        if (data==0){
+                            e=0;
+                            $('#showcollege').css('display', 'inline');
+                        }
+                        else {
+                            e=1;
+                            $('#showcollege').css('display', 'none');
+                        }
+
+                    }
+                })
+
+            }
+        </script>
     </head>
     <body>
         <div class="zong">
-            <form action="">
+            <form>
                 <table>
-                    <tr><td>用户名</td><td>某某</td></tr>
-                    <tr><td>真实姓名</td><td>某某</td></tr>
-                    <tr><td>性别</td><td>某某</td></tr>
-                    <tr><td>生日</td>
-                        <td>
-                            <select>
-                                <option value="1999">1999</option>
-                                <option value="1998">1998</option>
-                                <option value="1997">1999</option>
-                                <option value="1996">1996</option>
-                            </select>年
-                            <select>
-                                <option value="12">12</option>
-                                <option value="11">11</option>
-                                <option value="10">10</option>
-                                <option value="9">9</option>
-                            </select>月
-                            <select>
-                                <option value="12">12</option>
-                                <option value="11">11</option>
-                                <option value="10">10</option>
-                                <option value="9">9</option>
-                            </select>日
-                        </td>
-                    </tr>
-                    <tr><td>学校团队</td><td>某某</td></tr>
-                    <tr><td>区域团队</td><td>某某</td></tr>
-                    <tr><td>学校所在地</td><td><input type="text"></td></tr>
-                    <tr><td>入学年份</td><td>某某</td></tr>
-                    <tr><td>加入年份</td><td>某某</td></tr>
-                    <tr><td>出生地</td><td>某某</td></tr>
-                    <tr><td>居住地</td><td>某某</td></tr>
-                    <tr><td>血型</td>
-                        <td> 
-                            <select>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            </select>
-                        </td>
-                    </tr>
+                    <tr><td>用户名</td><td id="username"></td></tr>
+                    <tr><td>学号</td><td id="stunumber"></td></tr>
+                    <tr><td>真实姓名</td><td id="really"></td></tr>
+                    <tr><td>性别</td><td id="sex"></td></tr>
+                    <tr><td><span style="color: #FF0000;">*</span><span style="color: gray;">年龄</span></td><td id="age"></td></tr>
+                    <tr><td><span style="color: #FF0000;">*</span><span style="color: gray;">手机号</span></td><td id="phone"></td></tr>
+                    <tr><td><span style="color: #FF0000;">*</span><span style="color: gray;">邮箱</span></td><td id="email"></td></tr>
+                    <tr><td><span style="color: #FF0000;">*</span><span style="color: gray;">专业</span></td><td id="major"></td></tr>
+                    <tr><td><span style="color: #FF0000;">*</span><span style="color: gray;"></span>年级</td><td id="grade"></td></tr>
+                    <tr><td><span style="color: #FF0000;">*</span><span style="color: gray;">学院</span></td><td id="collage"></td></tr>
                 </table>
-                <input type="submit" value="保存" id="h">
+                <input type="button" value="保存" id="h" onclick="f()">
             </form>
         </div>
 
